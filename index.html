@@ -1,0 +1,305 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Tinku Singh | Portfolio</title>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+<style>
+/* RESET */
+* { margin:0; padding:0; box-sizing:border-box; scroll-behavior:smooth; font-family:'Poppins', sans-serif; }
+body { background:#F8FAFC; color:#1e293b; line-height:1.6; }
+
+/* HEADER */
+header {
+  background:linear-gradient(90deg,#00B4D8,#00C49A);
+  padding:1rem 6%;
+  display:flex; justify-content:space-between; align-items:center;
+  color:#fff; position:sticky; top:0; z-index:100;
+  box-shadow:0 2px 12px rgba(0,0,0,0.08);
+  flex-wrap:wrap;
+}
+header h1 { font-size:1.6rem; font-weight:600; letter-spacing:1px; }
+nav { display:flex; flex-wrap:wrap; justify-content:center; gap:1rem; }
+nav a {
+  text-decoration:none; color:#fff; margin:0 0.8rem;
+  font-weight:500; font-size:0.95rem; transition:0.3s;
+}
+nav a:hover { color:#003F63; }
+
+section { padding: 4rem 8%; }
+
+h2 {
+  font-size: 1.9rem; 
+  text-align: center;
+  margin-bottom: 1.8rem; 
+  font-weight: 600;
+  background: linear-gradient(90deg, #00B4D8, #00C49A);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+/* ABOUT */
+.about-container {
+  display:flex; align-items:center; justify-content:center;
+  gap:3rem; max-width:1100px; margin:auto; flex-wrap:wrap;
+}
+.about-text { flex:1 1 55%; font-size:1.05rem; color:#334155; }
+.about-text p { margin-bottom:1rem; }
+.about-photo { flex:1 1 35%; display:flex; justify-content:center; }
+.about-photo img { width:280px; height:280px; object-fit:cover; border-radius:50%; box-shadow:0 8px 18px rgba(0,0,0,0.12); border:5px solid #fff; }
+
+/* EDUCATION */
+.education p { max-width:800px; margin:0.6rem auto; text-align:center; font-size:1rem; color:#334155; }
+
+/* PROJECTS */
+.project-category { margin-bottom:3rem; }
+.project-category h3 {
+  font-size:1.4rem; color:#003F63; margin-bottom:1.2rem;
+  border-left:5px solid #00C49A; padding-left:10px;
+}
+.project-grid { display:grid; grid-template-columns: repeat(auto-fit,minmax(280px,1fr)); gap:1.5rem; }
+.project-card {
+  background:#fff; border-radius:14px;
+  box-shadow:0 6px 14px rgba(0,0,0,0.08);
+  padding:1.5rem; transition:all 0.3s ease;
+  border-top:4px solid transparent;
+}
+.project-card:hover { transform:translateY(-5px); border-top:4px solid #00C49A; box-shadow:0 8px 18px rgba(0,0,0,0.12); }
+.project-card h4 { color:#00B4D8; margin-bottom:0.5rem; font-size:1.1rem; }
+.project-card p { color:#475569; font-size:0.95rem; }
+.project-card a { color:#00C49A; text-decoration:none; font-weight:500; }
+.project-card a:hover { text-decoration:underline; }
+
+/* PROJECT IMAGE SLIDER */
+.project-slider { position: relative; width: 100%; height: 180px; overflow: hidden; border-radius: 10px; margin-bottom: 0.8rem; }
+.project-slider img { width: 100%; height: 100%; object-fit: cover; position: absolute; top: 0; left: 0; opacity: 0; transition: opacity 1s ease-in-out; }
+.project-slider img.active { opacity: 1; }
+
+/* SKILLS */
+.skills-list-container { display:flex; justify-content:center; gap:2rem; flex-wrap:wrap; max-width:700px; margin:auto; }
+.skills-column { display:flex; flex-direction:column; gap:0.7rem; }
+.skills-column span {
+  background:linear-gradient(90deg,#00B4D8,#00C49A);
+  color:#fff; padding:0.6rem 1.2rem; border-radius:25px; font-size:0.95rem; transition:0.3s ease;
+}
+.skills-column span:hover { transform:scale(1.05); }
+
+/* CERTIFICATIONS */
+.certifications ul { list-style:none; max-width:800px; margin:auto; padding:0; }
+.certifications li {
+  background:#fff; margin:0.6rem 0; padding:0.8rem 1.2rem;
+  border-radius:10px; box-shadow:0 3px 8px rgba(0,0,0,0.06);
+  color:#334155; border-left:4px solid #00B4D8;
+}
+
+/* CONTACT + FOOTER */
+.contact-footer { background:linear-gradient(135deg,#003F63,#00B4D8); color:#f9f9f9; padding:4rem 8% 2rem; }
+.contact-footer h2 { background:none; color:#fff; text-align:left; margin-bottom:1rem; }
+.contact-grid { display:flex; justify-content:space-between; flex-wrap:wrap; gap:2rem; max-width:900px; margin:auto; }
+.contact-item { flex:1 1 250px; }
+.contact-item p { margin-bottom:0.7rem; font-size:0.95rem; }
+.contact-item a { color:#A8EB12; text-decoration:none; transition:0.3s; }
+.contact-item a:hover { text-decoration:underline; color:#fff; }
+footer { text-align:center; margin-top:2rem; font-size:0.9rem; color:#cbd5e1; }
+
+/* MEDIA QUERIES */
+@media(max-width:1024px){
+  header { flex-direction:column; text-align:center; }
+  nav { margin-top:0.5rem; justify-content:center; gap:1rem; }
+  .about-container { flex-direction:column-reverse; text-align:center; }
+  .about-photo img { width:220px; height:220px; }
+  .contact-grid { flex-direction:column; text-align:center; }
+}
+@media(max-width:768px){
+  .project-grid { grid-template-columns: 1fr; } /* single column projects */
+  h2 { font-size:1.6rem; }
+  .about-text { font-size:1rem; }
+  .skills-column span { font-size:0.9rem; padding:0.5rem 1rem; }
+}
+@media(max-width:480px){
+  section { padding:3rem 5%; }
+  .about-photo img { width:180px; height:180px; }
+  h2 { font-size:1.4rem; }
+  nav a { font-size:0.85rem; }
+}
+</style>
+</head>
+<body>
+
+<header>
+  <h1>Tinku Singh</h1>
+  <nav>
+    <a href="#about">About</a>
+    <a href="#education">Education</a>
+    <a href="#projects">Projects</a>
+    <a href="#skills">Skills</a>
+    <a href="#certifications">Certifications</a>
+    <a href="#contact">Contact</a>
+  </nav>
+</header>
+
+<!-- ABOUT -->
+<section id="about" class="about">
+  <h2>🧑‍💻 About Me</h2>
+  <div class="about-container">
+    <div class="about-text">
+      <p>Hello, I’m <b>Tinku Singh</b>.</p>
+      <p>I am a dedicated <b>MERN Stack Developer</b> with a passion for crafting modern, responsive, and user-friendly web applications. My journey in technology goes beyond coding—I enjoy transforming ideas into real-world digital solutions that are both functional and visually appealing.</p>
+      <p>Alongside web development, I have experience in <b>Data Analytics</b>, enabling me to work with data-driven insights and make informed decisions for projects. Recently, I have been exploring the world of <b>Generative AI</b>, experimenting with intelligent technologies to enhance creativity and problem-solving.</p>
+      <p>I thrive on challenges, love learning new technologies, and am always eager to push the boundaries of what’s possible. Whether it’s building an interactive web app, analyzing complex data, or exploring AI innovations, I focus on delivering impactful and meaningful solutions.</p>
+    </div>
+    <div class="about-photo">
+      <img src="./Images/Me/Me.png" alt="Tinku Singh Photo">
+    </div>
+  </div>
+</section>
+
+<!-- EDUCATION -->
+<section id="education" class="education">
+  <h2>🎓 Education</h2>
+  <p><b>Bachelor of Technology in Computer Science (2022–2026)</b><br>YMCA University, Faridabad</p>
+  <p><b>12th Standard (CBSE)</b> – St. Thomas Senior Secondary School, Faridabad (2021)</p>
+  <p><b>10th Standard (CBSE)</b> – St. Anthony Secondary School, Faridabad (2019)</p>
+</section>
+
+<!-- PROJECTS -->
+<section id="projects">
+  <h2>💻 Projects</h2>
+
+  <div class="project-category">
+    <h3>Web Development Projects</h3>
+    <div class="project-grid">
+      <div class="project-card">
+        <h4>Weather App</h4>
+        <div class="project-slider">
+          <img src="./Images/WeatherAPP/1.png" alt="Weather App 1">
+          <img src="./Images/WeatherAPP/3.png" alt="Weather App 2">
+          <img src="./Images/WeatherAPP/4.png" alt="Weather App 3">
+        </div>
+        <p>Responsive weather application fetching live data from OpenWeather API. Users can search by city and view detailed forecasts for upcoming days, all within a clean, interactive interface.</p>
+        <p><b>GitHub:</b> <a href="https://github.com/Tinku112/Weather-App" target="_blank">Weather App GitHub</a><br>
+        <b>Live:</b> <a href="http://weather-app-tinku.netlify.app" target="_blank">Weather App Website</a></p>
+      </div>
+      <div class="project-card">
+        <h4>News App</h4>
+        <div class="project-slider">
+          <img src="./Images/NewsAPP/1.png" alt="News App 1">
+          <img src="./Images/NewsAPP/2.png" alt="News App 2">
+          <img src="./Images/NewsAPP/3.png" alt="News App 3">
+          <img src="./Images/NewsAPP/4.png" alt="News App 4">
+          <img src="./Images/NewsAPP/5.png" alt="News App 5">
+        </div>
+        <p>React-based news app providing categorized headlines in real-time. Users can filter news by category, read summaries instantly, and navigate seamlessly across different topics.</p>
+        <p><b>GitHub:</b> <a href="https://github.com/Tinku112/News-App" target="_blank">News App GitHub</a><br>
+        <b>Live:</b> <a href="https://news-tinku.netlify.app" target="_blank">News App Website</a></p>
+      </div>
+      <div class="project-card">
+        <h4>CRUD App</h4>
+        <div class="project-slider">
+          <img src="./Images/CRUD-APP/1.png" alt="CRUD App 1">
+          <img src="./Images/CRUD-APP/2.png" alt="CRUD App 2">
+          <img src="./Images/CRUD-APP/3.png" alt="CRUD App 3">
+        </div>
+        <p>Full-featured CRUD application to manage employee data with React & Bootstrap. Includes add, edit, delete, and view functionalities with proper validation and user-friendly design.</p>
+        <p><b>GitHub:</b> <a href="https://github.com/Tinku112/CRUD" target="_blank">CRUD App GitHub</a><br>
+        <b>Live:</b> <a href="https://crud-1vj2.onrender.com" target="_blank">CRUD App Website</a></p>
+      </div>
+    </div>
+  </div>
+
+  <div class="project-category">
+    <h3>Data Analyst Projects</h3>
+    <div class="project-grid">
+      <div class="project-card">
+        <h4>Covid-19 Dashboard</h4>
+        <div class="project-slider">
+          <img src="./Images/Covid-19/1.png" alt="Covid Dashboard 1">
+          <img src="./Images/Covid-19/2.png" alt="Covid Dashboard 2">
+          <img src="./Images/Covid-19/3.png" alt="Covid Dashboard 3">
+        </div>
+        <p>Interactive Covid-19 dashboard created using Power BI with data sourced from Kaggle. Users can track cases, recoveries, and vaccination progress across regions, enabling fast and insightful analysis.</p>
+        <p><b>GitHub:</b> <a href="https://github.com/Tinku112/Covid-19-Data-Analysis" target="_blank">Covid-19 Analysis GitHub</a></p>
+      </div>
+      <div class="project-card">
+        <h4>Vendor Sales Analysis</h4>
+        <div class="project-slider">
+          <img src="./Images/VendorAnalysis/1.png" alt="Vendor Analysis 1">
+          <img src="./Images/VendorAnalysis/2.png" alt="Vendor Analysis 2">
+        </div>
+        <p>Data-driven project analyzing vendor sales patterns using Python, SQL, and Power BI. Helps identify top-performing vendors, predict performance, and optimize sales strategies effectively.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SKILLS -->
+<section id="skills" class="skills">
+  <h2>⚙️ Skills</h2>
+  <div class="skills-list-container">
+    <div class="skills-column">
+      <span>HTML</span>
+      <span>CSS</span>
+      <span>JavaScript</span>
+      <span>Bootstrap</span>
+      <span>Node.js</span>
+      <span>Express.js</span>
+    </div>
+    <div class="skills-column">
+      <span>MongoDB</span>
+      <span>Python</span>
+      <span>SQL</span>
+      <span>Excel</span>
+      <span>Power BI</span>
+      <span>DBMS</span>
+      <span>OOPs</span>
+    </div>
+  </div>
+</section>
+
+<!-- CERTIFICATIONS -->
+<section id="certifications" class="certifications">
+  <h2>🏅 Certifications & Achievements</h2>
+  <ul>
+    <li>
+      <b>Generative AI Mastermind</b> — Successfully completed from <b>OutSkill</b>, organized by <b>Vaibhav Sisinty</b> (Founder of OutSkill) (2025)
+    </li>
+    <li>
+      <b>Hackathon Participation (2023)</b> — Collaborated on a web-based solution in a timed hackathon event. Gained practical exposure to team coordination, ideation, and prototyping under pressure.
+    </li>
+    <li>
+      <b>Intellectual Property Rights Workshop</b> — Participated in the workshop to understand IP fundamentals, copyright, patents, and trademarks. (2024)
+    </li>
+    <li>
+      <b>Smart India Hackathon (Internal)</b> — Participated at Aravali College of Engineering & Management, Faridabad <br>
+      <i>Date: 28 September 2023</i>
+    </li>
+    <li>
+      <b>Digital 101 Journey</b> — Completed by FutureSkills Prime and NASSCOM <br>
+      <i>Issued: 23/03/2025</i>
+    </li>
+  </ul>
+</section>
+
+<!-- CONTACT + FOOTER -->
+<section id="contact" class="contact-footer">
+  <div class="contact-grid">
+    <div class="contact-item">
+      <h2>📫 Contact Me</h2>
+      <p><b>Email:</b> <a href="mailto:tinkukool.ts@gmail.com">tinkukool.ts@gmail.com</a></p>
+      <p><b>LinkedIn:</b> <a href="https://linkedin.com/in/tinku-singh-webdev" target="_blank">linkedin.com/in/tinku-singh-webdev</a></p>
+      <p><b>Location:</b> Faridabad, Haryana, India</p>
+    </div>
+    <div class="contact-item">
+      <h2>🌐 Connect</h2>
+      <p>Open for full-time opportunities, freelance projects, and professional collaborations.</p>
+      <p>Explore my work on <b>GitHub:</b> <a href="https://github.com/Tinku112" target="_blank">https://github.com/Tinku112</a></p>
+    </div>
+  </div>
+  <footer>© 2025 Tinku Singh | Portfolio Website</footer>
+</section>
+
+<script src="./index.js"></script>
+</body>
+</html>
